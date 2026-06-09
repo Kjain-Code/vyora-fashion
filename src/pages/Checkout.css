@@ -1,0 +1,45 @@
+.checkout-page { padding-top: 100px; min-height: 100vh; background: #0a0a0a; padding-bottom: 80px; }
+.checkout-header { text-align: center; padding: 60px 20px 40px; }
+.checkout-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 300; color: #fff; letter-spacing: 4px; }
+.checkout-steps { display: flex; justify-content: center; gap: 0; margin-bottom: 60px; }
+.step { display: flex; align-items: center; gap: 12px; padding: 16px 32px; font-size: 10px; letter-spacing: 3px; color: #ffffff33; border-bottom: 2px solid #ffffff11; transition: all 0.3s; }
+.step.active { color: #C9A84C; border-bottom-color: #C9A84C; }
+.step.done { color: #ffffff66; border-bottom-color: #C9A84C44; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; border: 1px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+.checkout-layout { display: grid; grid-template-columns: 1fr 380px; gap: 60px; padding: 0 60px; }
+.form-section { background: #111; padding: 40px; border: 1px solid #C9A84C22; }
+.form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: #fff; letter-spacing: 2px; margin-bottom: 32px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 9px; letter-spacing: 4px; color: #C9A84C; margin-bottom: 8px; }
+.form-group input { width: 100%; background: transparent; border: 1px solid #ffffff22; color: #fff; padding: 14px 16px; font-size: 13px; font-family: 'Montserrat', sans-serif; outline: none; transition: border-color 0.3s; }
+.form-group input:focus { border-color: #C9A84C; }
+.form-group input::placeholder { color: #ffffff33; }
+.form-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
+.next-btn { background: #C9A84C; color: #000; border: none; padding: 16px 40px; font-size: 10px; letter-spacing: 4px; font-weight: 700; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: background 0.3s; }
+.next-btn:hover { background: #e8c96d; }
+.back-btn { background: none; border: none; color: #ffffff33; font-size: 10px; letter-spacing: 3px; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: color 0.3s; }
+.back-btn:hover { color: #C9A84C; }
+.payment-methods { display: flex; flex-direction: column; gap: 12px; }
+.payment-option { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border: 1px solid #ffffff22; cursor: pointer; transition: all 0.3s; }
+.payment-option.active { border-color: #C9A84C; background: #C9A84C11; }
+.pay-icon { font-size: 20px; }
+.pay-label { flex: 1; font-size: 12px; color: #ffffffcc; letter-spacing: 2px; }
+.pay-radio { font-size: 16px; color: #C9A84C; }
+.checkout-summary { background: #111; padding: 40px; height: fit-content; border: 1px solid #C9A84C22; }
+.summary-title { font-size: 11px; letter-spacing: 6px; color: #C9A84C; margin-bottom: 28px; }
+.co-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.co-item img { width: 64px; height: 80px; object-fit: cover; filter: brightness(0.8); }
+.co-item p { font-size: 13px; color: #fff; margin-bottom: 4px; }
+.co-meta { font-size: 10px; color: #ffffff33; letter-spacing: 2px; }
+.co-item span { margin-left: auto; font-size: 13px; color: #C9A84C; font-weight: 500; white-space: nowrap; }
+.summary-divider { border: none; border-top: 1px solid #ffffff11; margin: 16px 0; }
+.summary-row { display: flex; justify-content: space-between; font-size: 12px; color: #ffffff55; letter-spacing: 2px; margin-bottom: 12px; }
+.summary-row.total { font-size: 16px; color: #fff; font-weight: 600; letter-spacing: 3px; }
+.order-success { text-align: center; padding: 120px 20px; }
+.success-icon { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #C9A84C; color: #C9A84C; font-size: 32px; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; }
+.success-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: #fff; letter-spacing: 3px; margin-bottom: 16px; }
+.success-sub { font-size: 13px; color: #ffffff55; letter-spacing: 3px; margin-bottom: 24px; }
+.success-order { font-size: 16px; color: #C9A84C; letter-spacing: 4px; font-weight: 600; margin-bottom: 12px; }
+.success-note { font-size: 11px; color: #ffffff33; letter-spacing: 2px; }
+@media (max-width: 768px) { .checkout-layout { grid-template-columns: 1fr; padding: 0 20px; } .checkout-steps { overflow-x: auto; } }
