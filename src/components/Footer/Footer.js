@@ -9,10 +9,10 @@ const Footer = () => (
         <p className="footer-logo">VYORA</p>
         <p className="footer-tagline">For Her. For Him. For You.</p>
         <div className="footer-socials">
-          <a href="#" className="social">IG</a>
-          <a href="#" className="social">FB</a>
-          <a href="#" className="social">TW</a>
-          <a href="#" className="social">YT</a>
+          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="social">IG</a>
+          <a href="https://facebook.com" target="_blank" rel="noreferrer" className="social">FB</a>
+          <a href="https://twitter.com" target="_blank" rel="noreferrer" className="social">TW</a>
+          <a href="https://youtube.com" target="_blank" rel="noreferrer" className="social">YT</a>
         </div>
       </div>
       <div className="footer-links-group">
@@ -24,17 +24,17 @@ const Footer = () => (
       </div>
       <div className="footer-links-group">
         <h4>HELP</h4>
-        <a href="#">Size Guide</a>
-        <a href="#">Shipping Info</a>
-        <a href="#">Returns</a>
-        <a href="#">Track Order</a>
+        <Link to="/">Size Guide</Link>
+        <Link to="/">Shipping Info</Link>
+        <Link to="/">Returns</Link>
+        <Link to="/">Track Order</Link>
       </div>
       <div className="footer-links-group">
         <h4>COMPANY</h4>
-        <a href="#">About Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Press</a>
-        <a href="#">Contact</a>
+        <Link to="/">About Us</Link>
+        <Link to="/">Careers</Link>
+        <Link to="/">Press</Link>
+        <Link to="/">Contact</Link>
       </div>
     </div>
     <div className="footer-bottom">

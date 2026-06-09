@@ -72,10 +72,10 @@ const Navbar = () => {
           </div>
           <div className="menu-footer">
             <div className="menu-socials">
-              <a href="#">Instagram</a>
-              <a href="#">Facebook</a>
-              <a href="#">Twitter</a>
-            </div>
+  <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+  <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+  <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a>
+</div>
             <p className="menu-tagline">For Her. For Him. For You.</p>
           </div>
         </div>
