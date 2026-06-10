@@ -1,21 +1,83 @@
-.trending-desc { color: #ffffff77; }
-.trend-name { color: #ffffffee; }
-.trend-sales { color: #D4AF5A; }
-.trend-price { color: #ffffffdd; }
-
 .trending { padding: 100px 60px; background: #111; }
-.trending-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: center; }
-.trending-desc { font-size: 13px; color: #ffffff55; line-height: 1.8; margin-top: 16px; letter-spacing: 1px; }
-.btn-primary { background: #C9A84C; color: #000; border: none; padding: 16px 38px; font-size: 10px; letter-spacing: 4px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; transition: all 0.3s; }
-.btn-primary:hover { background: #e8c96d; transform: translateY(-2px); }
-.trending-list { display: flex; flex-direction: column; gap: 0; }
-.trending-item { display: flex; align-items: center; gap: 20px; padding: 20px 0; border-bottom: 1px solid #ffffff11; transition: all 0.3s; cursor: pointer; }
+
+.trending-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.trending-desc {
+  font-size: 12px;
+  color: #ffffff88;
+  line-height: 1.9;
+  margin-top: 16px;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #D4AF5A;
+  color: #000;
+  border: none;
+  padding: 16px 36px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s;
+  margin-top: 32px;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover { background: #EDD078; transform: translateY(-2px); }
+
+.trending-list { display: flex; flex-direction: column; }
+
+.trending-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid #ffffff11;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
 .trending-item:hover { border-color: #C9A84C33; }
-.trend-rank { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: #C9A84C22; min-width: 50px; }
-.trend-img { width: 64px; height: 80px; object-fit: cover; filter: brightness(0.8); transition: filter 0.3s; }
+.trending-item:first-child { border-top: 1px solid #ffffff11; }
+
+.trend-rank {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #C9A84C33;
+  min-width: 44px;
+}
+
+.trend-img {
+  width: 56px; height: 70px;
+  object-fit: cover;
+  filter: brightness(0.75);
+  transition: filter 0.3s;
+  flex-shrink: 0;
+}
+
 .trending-item:hover .trend-img { filter: brightness(1); }
-.trend-info { flex: 1; }
-.trend-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #fff; margin-bottom: 4px; }
-.trend-sales { font-size: 10px; color: #C9A84C; letter-spacing: 2px; }
-.trend-price { font-size: 14px; color: #fff; font-weight: 500; letter-spacing: 1px; }
-@media (max-width: 768px) { .trending { padding: 60px 20px; } .trending-inner { grid-template-columns: 1fr; gap: 40px; } }
+.trend-info { flex: 1; min-width: 0; }
+.trend-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #ffffffee; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.trend-sales { font-size: 9px; color: #D4AF5A; letter-spacing: 2px; text-transform: uppercase; }
+.trend-price { font-size: 14px; color: #ffffffdd; font-weight: 500; letter-spacing: 1px; white-space: nowrap; }
+
+@media (max-width: 1024px) {
+  .trending { padding: 80px 40px; }
+  .trending-inner { gap: 48px; }
+}
+
+@media (max-width: 768px) {
+  .trending { padding: 60px 20px; }
+  .trending-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 480px) { .trending { padding: 48px 16px; } }
