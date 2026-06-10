@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import './Navbar.css';
 
@@ -7,6 +7,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const location = useLocation();
+  const scrollY = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -14,12 +16,32 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
+
+  // Scroll lock — saves position, restores on close
   useEffect(() => {
     if (menuOpen) {
-      document.body.setAttribute('style', 'overflow:hidden');
+      scrollY.current = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY.current}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflowY = 'scroll';
     } else {
-      document.body.removeAttribute('style');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflowY = '';
+      window.scrollTo(0, scrollY.current);
     }
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflowY = '';
+    };
   }, [menuOpen]);
 
   const navLinks = [
@@ -49,7 +71,11 @@ const Navbar = () => {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             <span className="cart-badge">{totalItems}</span>
           </Link>
-          <button className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            className={`hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
             <span className="ham-line" />
             <span className="ham-line" />
             <span className="ham-line" />
@@ -61,9 +87,13 @@ const Navbar = () => {
         <div className="menu-inner">
           <div className="menu-links">
             {navLinks.map((link, i) => (
-              <Link key={i} to={link.to} className="menu-link"
+              <Link
+                key={i}
+                to={link.to}
+                className="menu-link"
                 style={{ animationDelay: `${0.1 + i * 0.08}s` }}
-                onClick={() => setMenuOpen(false)}>
+                onClick={() => setMenuOpen(false)}
+              >
                 <span className="menu-link-num">0{i + 1}</span>
                 <span className="menu-link-text">{link.label}</span>
                 <span className="menu-link-arrow">→</span>
@@ -72,10 +102,10 @@ const Navbar = () => {
           </div>
           <div className="menu-footer">
             <div className="menu-socials">
-  <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-  <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
-  <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a>
-</div>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+              <a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter</a>
+            </div>
             <p className="menu-tagline">For Her. For Him. For You.</p>
           </div>
         </div>
