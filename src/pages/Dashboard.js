@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { login as loginService, register as registerService } from '../services/authService';
 import { getMyOrders } from '../services/orderService';
 import './Dashboard.css';
 
 const Dashboard = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { user, login, logout } = useAuth();
   const [tab, setTab] = useState('orders');
   const [isLogin, setIsLogin] = useState(true);
@@ -12,6 +15,14 @@ const Dashboard = () => {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const requiresCheckout = new URLSearchParams(location.search).get('next') === 'checkout';
+
+  const getAuthErrorMessage = (err) => {
+    if (err?.response?.data?.message) return err.response.data.message;
+    if (err?.response?.data?.error) return err.response.data.error;
+    if (err?.message) return err.message;
+    return 'Something went wrong. Please try again.';
+  };
 
   const handleAuth = async () => {
     setLoading(true);
@@ -24,10 +35,19 @@ const Dashboard = () => {
         userData = await registerService(form.name, form.email, form.password, form.phone);
       }
       login(userData);
-      const myOrders = await getMyOrders();
-      setOrders(myOrders);
+      if (requiresCheckout) {
+        navigate('/checkout', { replace: true });
+        return;
+      }
+
+      try {
+        const myOrders = await getMyOrders();
+        setOrders(myOrders || []);
+      } catch (ordersError) {
+        setOrders([]);
+      }
     } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong');
+      setError(getAuthErrorMessage(err));
     }
     setLoading(false);
   };
@@ -37,6 +57,11 @@ const Dashboard = () => {
       <div className="auth-card">
         <p className="section-eyebrow">VYORA ACCOUNT</p>
         <h2 className="auth-title">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
+        {requiresCheckout && (
+          <p style={{ color: '#f8d877', fontSize: '12px', marginBottom: '16px', letterSpacing: '1px' }}>
+            Please login or create an account to continue to checkout.
+          </p>
+        )}
         {error && <p style={{color:'#f44336', fontSize:'12px', marginBottom:'16px', letterSpacing:'1px'}}>{error}</p>}
         {!isLogin && (
           <div className="form-group">

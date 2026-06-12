@@ -1,6 +1,6 @@
-import UPIPayment from '../components/UPIPayment';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './ProductDetail.css';
 
 
@@ -29,13 +29,23 @@ const related = [
 ];
 
 const ProductDetail = () => {
-  const [showQR, setShowQR] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [activeImg, setActiveImg] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [qty, setQty] = useState(1);
   const [wishlisted, setWishlisted] = useState(false);
   const [tab, setTab] = useState('description');
+
+  const handleBuyNow = () => {
+    if (!user) {
+      navigate('/dashboard?next=checkout');
+      return;
+    }
+
+    navigate('/checkout');
+  };
 
   return (
     <div className="pd-page">
@@ -95,7 +105,7 @@ const ProductDetail = () => {
 
           <div className="pd-btns">
             <button className="btn-cart">ADD TO CART</button>
-            <button className="btn-buy">BUY NOW</button>
+            <button className="btn-buy" onClick={handleBuyNow}>BUY NOW</button>
             <button className={`btn-wish ${wishlisted ? 'active' : ''}`} onClick={() => setWishlisted(!wishlisted)}>
               {wishlisted ? '♥' : '♡'}
             </button>

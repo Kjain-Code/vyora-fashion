@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Cart.css';
 
 const initItems = [
@@ -8,6 +9,8 @@ const initItems = [
 ];
 
 const Cart = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [items, setItems] = useState(initItems);
   const [coupon, setCoupon] = useState('');
   const [discount, setDiscount] = useState(0);
@@ -20,6 +23,15 @@ const Cart = () => {
 
   const applyCoupon = () => {
     if (coupon.toUpperCase() === 'VYORA10') setDiscount(Math.round(subtotal * 0.1));
+  };
+
+  const handleCheckout = () => {
+    if (!user) {
+      navigate('/dashboard?next=checkout');
+      return;
+    }
+
+    navigate('/checkout');
   };
 
   return (
@@ -69,7 +81,7 @@ const Cart = () => {
             {discount > 0 && <div className="summary-row gold"><span>Discount</span><span>−₹{discount.toLocaleString()}</span></div>}
             <div className="summary-divider" />
             <div className="summary-row total"><span>TOTAL</span><span>₹{total.toLocaleString()}</span></div>
-            <Link to="/checkout" className="checkout-btn">PROCEED TO CHECKOUT</Link>
+            <button type="button" className="checkout-btn" onClick={handleCheckout}>PROCEED TO CHECKOUT</button>
             <Link to="/shop" className="continue-btn">CONTINUE SHOPPING</Link>
           </div>
         </div>
