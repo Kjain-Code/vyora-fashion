@@ -4,6 +4,7 @@ import './Checkout.css';
 
 const Checkout = () => {
   const [showQR, setShowQR] = useState(false);
+  const totalAmount = 21498;
 
   const [step, setStep] = useState(1);
   const [payment, setPayment] = useState('upi');
@@ -137,7 +138,7 @@ const Checkout = () => {
 
 {showQR && (
   <UPIPayment
-    amount={21498}
+    amount={totalAmount}
     onClose={() => { setShowQR(false); setDone(true); }}
   />
 )}
@@ -162,7 +163,7 @@ const Checkout = () => {
           <div className="summary-row"><span>Subtotal</span><span>₹21,498</span></div>
           <div className="summary-row"><span>Shipping</span><span>FREE</span></div>
           <div className="summary-divider" />
-          <div className="summary-row total"><span>TOTAL</span><span>₹21,498</span></div>
+          <div className="summary-row total"><span>TOTAL</span><span>₹{totalAmount.toLocaleString()}</span></div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { QRCodeSVG } from 'qrcode.react'
 
 function UPIPayment({ amount, onClose }) {
-  const upiId = 'yourname@upi'  // ← apna UPI ID yahan daal
+  const upiId = 'vaishalii.ceo@slc';
   const upiLink = `upi://pay?pa=${upiId}&pn=VyoraFashion&am=${amount}&cu=INR`
 
   return (
