@@ -1,6 +1,8 @@
+import UPIPayment from '../components/UPIPayment';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductDetail.css';
+
 
 const product = {
   id: 1,
@@ -27,6 +29,7 @@ const related = [
 ];
 
 const ProductDetail = () => {
+  const [showQR, setShowQR] = useState(false);
   const [activeImg, setActiveImg] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import UPIPayment from '../components/UPIPayment';
 import './Checkout.css';
 
 const Checkout = () => {
+  const [showQR, setShowQR] = useState(false);
+
   const [step, setStep] = useState(1);
   const [payment, setPayment] = useState('upi');
   const [done, setDone] = useState(false);
@@ -129,7 +132,15 @@ const Checkout = () => {
 
               <div className="form-nav">
                 <button className="back-btn" onClick={() => setStep(2)}>← BACK</button>
-                <button className="next-btn" onClick={() => setDone(true)}>PLACE ORDER</button>
+                {/* <button className="next-btn" onClick={() => setDone(true)}>PLACE ORDER</button> */}
+                <button className="next-btn" onClick={() => setShowQR(true)}>PLACE ORDER</button>
+
+{showQR && (
+  <UPIPayment
+    amount={21498}
+    onClose={() => { setShowQR(false); setDone(true); }}
+  />
+)}
               </div>
             </div>
           )}
